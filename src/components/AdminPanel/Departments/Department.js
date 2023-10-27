@@ -64,7 +64,7 @@ function Department({ onShowCreateDepartment, onShowEditDepartment, departmentDa
               </li>
             ))}
           </ul>
-          <button onClick={handleAddDepartment}>Add Department</button>
+          <button onClick={handleAddDepartment} type="submit">Add Department</button>
         </div>
       )}
       {editingDepartment && (

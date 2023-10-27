@@ -15,7 +15,8 @@ function CreateDepartment(props) {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault()
     // Call the onSave callback to pass the new department data
     props.onSave(newDepartment);
   };
@@ -23,7 +24,7 @@ function CreateDepartment(props) {
   return (
     <div>
       <h2>Create Department</h2>
-      <form>
+      <form onSubmit={handleSave}>
         <div className="form-group">
           <label htmlFor="name">Department Name:</label>
           <input
@@ -44,7 +45,7 @@ function CreateDepartment(props) {
             onChange={handleInputChange}
           />
         </div>
-        <button type="button" onClick={handleSave}>
+        <button type="submit" className="add-department-button">
           Save
         </button>
       </form>

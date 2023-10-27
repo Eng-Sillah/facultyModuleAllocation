@@ -6,13 +6,13 @@ function Module({ onShowCreateModule, modulesData }) {
 const sampleModulesData = [
     {
       id: 1,
-      code: 'MOD001',
+      code: 'PROG01',
       name: 'Introduction to Programming',
       creditHours: 3,
     },
     {
       id: 2,
-      code: 'MOD002',
+      code: 'DAT01',
       name: 'Data Structures and Algorithms',
       creditHours: 4,
     },

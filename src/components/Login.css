@@ -53,13 +53,13 @@ main {
     width: 100%;
     padding: 8px;
     border-radius: 10px;
-    background-color: aliceblue;
+    background-color: rgb(21, 140, 244);
     margin-bottom: 5px;
     font-weight: bold;
   }
 
   .login-form  .login-form  button:hover {
-    background-color: rgb(230, 252, 252);
+    background-color: rgb(131, 140, 240);
   }
 
 
