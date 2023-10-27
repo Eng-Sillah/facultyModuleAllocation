@@ -1,0 +1,126 @@
+/* CSS for CreateEventDashboard component */
+
+.create-event-dashboard {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+    padding-top: 60px;
+    background-color: #f4f4f4;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 23%;
+    background-color: #333;
+    color: #fff;
+    padding: 80px 20px 20px 20px;
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    height: 100%;
+    overflow-y: auto;
+    transition: left 0.3s; /* Add smooth transition for left property */
+  }
+  
+  /* Sidebar toggle button styles */
+  .sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    display: none; 
+    /* Initially show the toggle button */
+  }
+  
+  /* When the sidebar is visible, move it into the viewport */
+  .sidebar.visible {
+    left: 0;
+    z-index: 99;
+    width: 50%;
+  }
+  
+  /* Sidebar item styles */
+  .sidebar-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #555;
+  }
+  
+  /* Main content styles */
+  .main-content {
+    margin-left: 23%;
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .main-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Add your specific styles for form elements and content here */
+  
+  /* Example style for form input */
+  .main-content input {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Example style for buttons */
+  .main-content button {
+    padding: 10px 20px;
+    background-color: rgb(252, 138, 7);
+    color: black;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Example style for buttons on hover */
+  .main-content button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Add more styles as needed for your specific design */
+  
+  /* Media query for screens smaller than 768px */
+  @media (max-width: 768px) {
+    .create-event-dashboard {
+      position: relative;
+    }
+    .sidebar {
+      left: -100%; 
+      position: absolute;/* Hide the sidebar by default on smaller screens */
+    }
+  
+    .sidebar.visible {
+      left: 0;
+    }
+  
+    .main-content {
+      width: 100%;
+      margin-left: 0;
+      padding: 0;
+      padding-top: 25px;
+    }
+  
+    .sidebar-toggle {
+      display: block;
+      z-index: 999;
+      position: fixed;
+    /* Show the toggle button on smaller screens */
+    }
+  }
+  

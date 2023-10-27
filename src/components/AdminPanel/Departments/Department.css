@@ -1,0 +1,66 @@
+/* Department.css */
+
+.department {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .department h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .department ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .department li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 15px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .department li .action button {
+    margin-left: 15px;
+  }
+  .department button {
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .department button:hover {
+    background-color: #0055a4;
+  }
+  
+  .department button:active {
+    background-color: #004488;
+  }
+  
+  .department button.edit {
+    background-color: #333;
+    margin-right: 10px;
+  }
+  
+  .department button.delete {
+    background-color: #cc0000;
+  }
+  
+  .department button.add {
+    background-color: #009900;
+    margin-top: 10px;
+  }
+  
+  .department button.add:hover {
+    background-color: #007700;
+  }
+  
