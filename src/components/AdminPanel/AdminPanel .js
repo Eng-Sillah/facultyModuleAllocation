@@ -53,6 +53,10 @@ function AdminPanel(props) {
     handleCategoryClick('module'); // Cancel creating a module and go back to the Module page
   }
 
+  function handleShowDepartment() {
+    handleCategoryClick('department');
+  }
+
   const categoryComponents = {
     dashboard: <Dashboard />,
     department: (
@@ -66,7 +70,7 @@ function AdminPanel(props) {
     faculty: <Faculty />,
     lecturer: <Lecturer />,
     module: <Module modulesData={modulesData} onShowCreateModule={handleShowCreateModule} />,
-    createDepartment: <CreateDepartment onSave={addNewDepartment} />,
+    createDepartment: <CreateDepartment onSave={addNewDepartment} onShowDepartment={handleShowDepartment}/>,
     editDepartment: (
       <EditDepartment
         department={editingDepartment}

@@ -17,15 +17,15 @@ function Dashboard() {
         <p>30</p> {/* Replace with the actual total */}
       </div>
       <div className="dashboard-card">
-        <h2>Total Lecturers</h2>
+        <h2>Total Department</h2>
         <p>30</p> {/* Replace with the actual total */}
       </div>
       <div className="dashboard-card">
-        <h2>Total Lecturers</h2>
+        <h2>Total Program</h2>
         <p>30</p> {/* Replace with the actual total */}
       </div>
       <div className="dashboard-card">
-        <h2>Total Lecturers</h2>
+        <h2>Total Students</h2>
         <p>30</p> {/* Replace with the actual total */}
       </div>
     </div>

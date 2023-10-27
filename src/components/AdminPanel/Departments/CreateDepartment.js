@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./CreateDepartment.css";
 
 function CreateDepartment(props) {
   const [newDepartment, setNewDepartment] = useState({
@@ -19,10 +20,11 @@ function CreateDepartment(props) {
     e.preventDefault()
     // Call the onSave callback to pass the new department data
     props.onSave(newDepartment);
+    props.onShowDepartment()
   };
 
   return (
-    <div>
+    <div className="create-department-container">
       <h2>Create Department</h2>
       <form onSubmit={handleSave}>
         <div className="form-group">
