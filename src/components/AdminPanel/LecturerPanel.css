@@ -1,0 +1,94 @@
+/* CSS for LecturerPanel component */
+
+.lecturer {
+    padding: 20px;
+    padding-top: 50px;
+  }
+  
+  /* Navbar styles */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-info button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .logout-button {
+    margin: 0 40px;
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .selectedModule {
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .module-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .module-list th,
+  .module-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .module-list th {
+    background-color: #f2f2f2;
+  }
+  
+  .module-list tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+  
+  .module-details h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .module-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .module-details th,
+  .module-details td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .module-details th {
+    background-color: #f2f2f2;
+  }
+  

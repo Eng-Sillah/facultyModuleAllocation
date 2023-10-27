@@ -21,7 +21,7 @@ function Lecturer() {
   const handleModuleClick = (module) => {
     setSelectedModule(module);
   };
-console.log("Hello")
+
   return (
     <div className="lecturer">
       <h1>Lecturer</h1>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,47 +27,125 @@ const Login = () => {
     }
   };
 
+  
   return (
-    <div>
-      <h1>Login</h1>
-      <div>
-        <label>
-          <input
-            type="radio"
-            name="role"
-            value="admin"
-            checked={role === 'admin'}
-            onChange={() => setRole('admin')}
-          />
-          Admin
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="role"
-            value="lecturer"
-            checked={role === 'lecturer'}
-            onChange={() => setRole('lecturer')}
-          />
-          Lecturer
-        </label>
-      </div>
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
-      <p>{message}</p>
-    </div>
-  );
+    <>
+        <main >
+            <section className='login-form'>
+                <div>
+                    <h2> Faculty Module Allocation </h2>
+                    <form className='login-form'>
+                    <div className='radio-option'>
+                      <label>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="admin"
+                          checked={role === 'admin'}
+                          onChange={() => setRole('admin')}
+                        />
+                        Admin
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="lecturer"
+                          checked={role === 'lecturer'}
+                          onChange={() => setRole('lecturer')}
+                        />
+                        Lecturer
+                      </label>
+                    </div>
+                        <div className='controls'>
+                            <label htmlFor="email-address">
+                                Email address
+                            </label>
+                            <input
+                              type="email"
+                              placeholder="Email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+
+                        <div className='controls'>
+                            <label htmlFor="password">
+                                Password
+                            </label>
+                            <input
+                              type="password"
+                              placeholder="Password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+
+                        <div>
+                            <button
+                                onClick={handleLogin}
+                            >
+                                Login
+                            </button>
+                        </div>
+
+                        <div>
+                        <p>{message}</p>
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+        </main>
+    </>
+)
+
+
+
+
+
+  // return (
+  //   <div>
+  //     <h1>Login</h1>
+      // <div>
+      //   <label>
+      //     <input
+      //       type="radio"
+      //       name="role"
+      //       value="admin"
+      //       checked={role === 'admin'}
+      //       onChange={() => setRole('admin')}
+      //     />
+      //     Admin
+      //   </label>
+      //   <label>
+      //     <input
+      //       type="radio"
+      //       name="role"
+      //       value="lecturer"
+      //       checked={role === 'lecturer'}
+      //       onChange={() => setRole('lecturer')}
+      //     />
+      //     Lecturer
+      //   </label>
+      // </div>
+      // <input
+      //   type="text"
+      //   placeholder="Email"
+      //   value={email}
+      //   onChange={(e) => setEmail(e.target.value)}
+      // />
+      // <input
+      //   type="password"
+      //   placeholder="Password"
+      //   value={password}
+      //   onChange={(e) => setPassword(e.target.value)}
+      // />
+  //     <button onClick={handleLogin}>Login</button>
+  //     <p>{message}</p>
+  //   </div>
+  // );
+
 };
 
 export default Login;

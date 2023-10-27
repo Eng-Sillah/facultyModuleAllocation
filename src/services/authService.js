@@ -5,7 +5,7 @@ export const login = (email, password, role) => {
         return { success: true, message: 'Login successful as admin' };
       }
     } else if (role === 'lecturer') {
-      if (email === 'lecturer@example.com' && password === 'lecturerpassword') {
+      if (email === 'lect@example.com' && password === 'lectpass') {
         return { success: true, message: 'Login successful as Lecturer' };
       }
     }

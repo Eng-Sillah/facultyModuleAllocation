@@ -1,0 +1,32 @@
+.faculty {
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .faculty h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .faculty ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .faculty li {
+    margin-bottom: 15px;
+  }
+  
+  .add-faculty-button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-faculty-button:hover {
+    background-color: #003b80;
+  }
+  

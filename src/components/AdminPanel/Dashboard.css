@@ -2,8 +2,9 @@
 
 .dashboard {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 5px;
   }
   
   .dashboard-card {
@@ -11,10 +12,11 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
-    width: 150px;
+    width: 25%;
     height: 150px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 5px;
   }
   
   .dashboard-card h2 {
