@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './CreateLecturer.css';
+
 function CreateLecturer({ onSave, onCancelCreate }) {
   const [lecturerInfo, setLecturerInfo] = useState({
     firstname: "",
@@ -21,6 +22,11 @@ function CreateLecturer({ onSave, onCancelCreate }) {
   ];
 
   const [showModuleCheckboxes, setShowModuleCheckboxes] = useState(false);
+  const [selectedModule, setSelectedModule] = useState("");
+  const [moduleDetails, setModuleDetails] = useState({
+    semester: "",
+    classes: [],
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,63 +36,84 @@ function CreateLecturer({ onSave, onCancelCreate }) {
     });
   };
 
-  const handleModuleSelection = (selectedModule) => {
-    if (lecturerInfo.modules.includes(selectedModule)) {
-      // Deselect module if it's already selected
-      setLecturerInfo({
-        ...lecturerInfo,
-        modules: lecturerInfo.modules.filter((module) => module !== selectedModule),
-      });
-    } else {
-      // Select the module if it's not already selected
-      setLecturerInfo({
-        ...lecturerInfo,
-        modules: [...lecturerInfo.modules, selectedModule],
-      });
-    }
+  const handleModuleSelection = (module) => {
+    setSelectedModule(module);
+    setModuleDetails({ semester: "", classes: [] });
   };
 
   const handleDropdownToggle = () => {
     setShowModuleCheckboxes(!showModuleCheckboxes);
   };
 
+  const handleSemesterChange = (e) => {
+    setModuleDetails({ ...moduleDetails, semester: e.target.value });
+  };
+  
+  const handleClassesChange = (e) => {
+    const classes = e.target.value.split(',').map(c => c.trim());
+    setModuleDetails({ ...moduleDetails, classes });
+  };
+
+  const handleAddModuleDetails = () => {
+    if (selectedModule) {
+      const moduleInfo = {
+        moduleName: selectedModule,
+        details: {
+          semester: moduleDetails.semester,
+          classes: moduleDetails.classes,
+        },
+      };
+      
+      setLecturerInfo({
+        ...lecturerInfo,
+        modules: [...lecturerInfo.modules, moduleInfo],
+      });
+      
+      // Clear the module details and deselect the module
+      setSelectedModule("");
+      setModuleDetails({ semester: "", classes: [] });
+    }
+  };
+
+  const isModuleChecked = (module) => {
+    return lecturerInfo.modules.some((m) => m.moduleName === module);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Call the onSave function to save the lecturer information
     onSave(lecturerInfo);
-
-    // Log the selected modules
-    console.log("Selected Modules:", lecturerInfo);
+    
+    // Log the selected modules with details
+    console.log("Selected Modules with Details:", lecturerInfo);
   };
 
   return (
-    <div className="create-lecturer-container ">
+    <div className="create-lecturer-container">
       <h1>Register New Lecturer</h1>
-      
       <form onSubmit={handleSubmit}>
-      <div className="lectName">
-      <div className="form-group">
-          <label htmlFor="firstname">First Name:</label>
-          <input
-            type="text"
-            name="firstname"
-            id="firstname"
-            value={lecturerInfo.firstname}
-            onChange={handleChange}
-          />
+        <div className="lectName">
+          <div className="form-group">
+            <label htmlFor="firstname">First Name:</label>
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              value={lecturerInfo.firstname}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastname">Last Name:</label>
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              value={lecturerInfo.lastname}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="lastname">Last Name:</label>
-          <input
-            type="text"
-            name="lastname"
-            id="lastname"
-            value={lecturerInfo.lastname}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-
         <div className="form-group">
           <label htmlFor="department">Department:</label>
           <input
@@ -104,21 +131,51 @@ function CreateLecturer({ onSave, onCancelCreate }) {
             <div className="module-checkboxes">
               {allModules.map((module) => (
                 <div className="modules" key={module}>
-                    <div className="lectModule">
-                <label key={module}></label>
-                  <input
-                    type="checkbox"
-                    name={module}
-                    checked={lecturerInfo.modules.includes(module)}
-                    onChange={() => handleModuleSelection(module)}
-                  />
-                  {module}
+                  <div className="lectModule">
+                    <label key={module}></label>
+                    <input
+                      type="checkbox"
+                      name={module}
+                      checked={isModuleChecked(module)}
+                      onChange={() => handleModuleSelection(module)}
+                    />
+                    {module}
                   </div>
                 </div>
               ))}
             </div>
           )}
         </div>
+        {selectedModule && (
+          <div className="module-details-form">
+            <h3>{selectedModule} Details</h3>
+            <div className="form-group">
+              <label htmlFor="semester">Semester:</label>
+              <input
+                type="text"
+                name="semester"
+                value={moduleDetails.semester}
+                onChange={handleSemesterChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="classes">Classes (comma-separated):</label>
+              <input
+                type="text"
+                name="classes"
+                value={moduleDetails.classes.join(', ')}
+                onChange={handleClassesChange}
+              />
+            </div>
+            <button
+              type="button"
+              className="add-module-details-button"
+              onClick={handleAddModuleDetails}
+            >
+              Add Module Details
+            </button>
+          </div>
+        )}
         <button type="submit" className="add-lecturer-button">
           Save Lecturer
         </button>
