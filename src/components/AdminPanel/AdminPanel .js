@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Department from '../AdminPanel/Departments/Department';
 import Faculty from '../AdminPanel/Faculty/Faculty';
 import Lecturer from '../AdminPanel/Lecturer/Lecturer';
+import CreatLecture from './Lecturer/CreateLecturer';
 import Module from '../AdminPanel/Module/Module';
 import Dashboard from './Dashboard';
 import CreateDepartment from './Departments/CreateDepartment';
@@ -18,6 +19,7 @@ function AdminPanel(props) {
   const [modulesData, setModuledata] = useState([]);
   const [editingDepartment, setEditingDepartment] = useState(null);
   const [editingModule, setEditingModule] = useState(null);
+  const [editingLecturer, setEditingLecturer] = useState(null); // Add state for editing lecturer
   const [adminName] = useState("Admin User"); // Replace with the actual admin's name
   const navigate = useNavigate();
 
@@ -57,6 +59,16 @@ function AdminPanel(props) {
     handleCategoryClick('department');
   }
 
+  function handleShowCreateLecturer() {
+    handleCategoryClick('createLecturer'); // Show the CreateLecturer component
+  }
+
+  function cancelCreateLecturer() {
+    handleCategoryClick('lecturer'); // Cancel creating a lecturer and go back to the Lecturer page
+  }
+
+
+
   const categoryComponents = {
     dashboard: <Dashboard />,
     department: (
@@ -68,7 +80,8 @@ function AdminPanel(props) {
       />
     ),
     faculty: <Faculty />,
-    lecturer: <Lecturer />,
+    lecturer: <Lecturer onShowCreateLecturer={handleShowCreateLecturer}/>,
+    createLecturer: <CreatLecture onCancelCreate={cancelCreateLecturer} />,
     module: <Module modulesData={modulesData} onShowCreateModule={handleShowCreateModule} />,
     createDepartment: <CreateDepartment onSave={addNewDepartment} onShowDepartment={handleShowDepartment}/>,
     editDepartment: (

@@ -6,6 +6,9 @@ function CreateModule(props) {
     code: '',
     name: '',
     creditHours: 0,
+    semester: '',
+    program: '',
+    department: '',
   });
 
   const handleInputChange = (e) => {
@@ -18,7 +21,6 @@ function CreateModule(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newModule)
     props.onSave(newModule);
   };
 
@@ -53,6 +55,46 @@ function CreateModule(props) {
             name="creditHours"
             id="creditHours"
             value={newModule.creditHours}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group">
+        <label htmlFor="semester">Semester:</label>
+        <select
+          name="semester"
+          id="semester"
+          value={newModule.semester}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Semester</option>
+          <option value="Semester 01">Semester 01</option>
+          <option value="Semester 02">Semester 02</option>
+          <option value="Semester 03">Semester 03</option>
+          <option value="Semester 04">Semester 04</option>
+          <option value="Semester 05">Semester 05</option>
+          <option value="Semester 06">Semester 06</option>
+          <option value="Semester 07">Semester 07</option>
+          <option value="Semester 08">Semester 08</option>
+        </select>
+      </div>
+
+        <div className="form-group">
+          <label htmlFor="program">Program:</label>
+          <input
+            type="text"
+            name="program"
+            id="program"
+            value={newModule.program}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="department">Department:</label>
+          <input
+            type="text"
+            name="department"
+            id="department"
+            value={newModule.department}
             onChange={handleInputChange}
           />
         </div>

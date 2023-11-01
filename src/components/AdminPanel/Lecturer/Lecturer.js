@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import ModuleDetails from './ModuleDetails';
+import CreateLecturer from './CreateLecturer';
 
-function Lecturer() {
+function Lecturer({ onShowCreateLecturer }) {
   const [selectedLecturer, setSelectedLecturer] = useState(null);
+  const [showCreateLecturer, setShowCreateLecturer] = useState(false);
   const [lecturers, setLecturers] = useState([
     {
       id: 1,
@@ -23,16 +24,38 @@ function Lecturer() {
     // Add more lecturer data as needed
   ]);
 
-  const handleLecturerClick = (lecturer) => {
-    setSelectedLecturer(lecturer);
+  // Function to show the CreateLecturer component
+  const handleShowCreateLecturer = () => {
+    setShowCreateLecturer(true);
   };
+
+  // Function to reset the view when switching to the Lecturer tab
+  const handleShowLecturer = () => {
+    setShowCreateLecturer(false);
+  };
+
+  // Function to cancel creating a lecturer
+  const cancelCreateLecturer = () => {
+    setShowCreateLecturer(false);
+  };
+
+  function addNewLecturer() {
+    console.log("Hello");
+    // You can add your logic to add a new lecturer here.
+  }
 
   return (
     <div className="lecturer">
-      <h1>Lecturer List</h1>
       {selectedLecturer ? (
-        <ModuleDetails module={selectedLecturer} />
+        /* Display details of selected lecturer if any */
+        <div>
+          {/* You can add details of the selected lecturer here */}
+        </div>
+      ) : showCreateLecturer ? (
+        /* Display CreateLecturer component when creating a new lecturer */
+        <CreateLecturer onSave={addNewLecturer} onCancelCreate={cancelCreateLecturer} />
       ) : (
+        /* Display the list of lecturers */
         <div>
           <table>
             <thead>
@@ -55,13 +78,13 @@ function Lecturer() {
                   <td>{lecturer.department}</td>
                   <td>
                     <button>Edit</button>
-                    <button >Delete</button>
+                    <button>Delete</button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button >Add New Lecturer</button>
+          <button onClick={handleShowCreateLecturer}>Add New Lecturer</button>
         </div>
       )}
     </div>

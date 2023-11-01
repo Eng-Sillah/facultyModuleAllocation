@@ -1,0 +1,130 @@
+/* CreateLecturer.css */
+
+/* Container styles */
+.create-lecturer-container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px;
+    text-align: left;
+  }
+  
+  .lectName {
+    display: flex;
+    justify-content: space-between;
+  }
+  .lectName .form-group {
+    width: 47%;
+  }
+  /* Header styles */
+  .create-lecturer-header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form styles */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 35%;
+  }
+  
+  .form-group input {
+    width: 100%;
+    /* padding: 10px; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Module dropdown styles */
+  .module-dropdown {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .module-dropdown button {
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .module-dropdown button:hover {
+    background-color: #0056b3;
+  }
+  
+  .module-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .module-checkboxes .modules {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+  .module-checkboxes .modules label{
+    width: max-content;
+    margin: 0;
+  }
+
+  .module-checkboxes .modules .lectModule {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .module-checkboxes .modules input {
+    margin: 0;
+    padding: 0;
+  }
+  .module-checkboxes label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  /* Button styles */
+  .add-lecturer-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .add-lecturer-button:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #d32f2f;
+  }
+  
