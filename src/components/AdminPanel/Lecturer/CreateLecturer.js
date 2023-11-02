@@ -5,7 +5,13 @@ function CreateLecturer({ onSave, onCancelCreate }) {
   const [lecturerInfo, setLecturerInfo] = useState({
     firstname: "",
     lastname: "",
-    department: "",
+    department: "", // Updated to use a dropdown
+    address: "", // New field for lecturer's address
+    gender: "", // New field for lecturer's gender
+    dateOfBirth: "", // New field for date of birth
+    qualification: "", // New field for lecturer's qualification
+    email: "", // New field for lecturer's email
+    contact: "", // New field for lecturer's contact
     modules: [],
   });
 
@@ -21,23 +27,38 @@ function CreateLecturer({ onSave, onCancelCreate }) {
     "Intro to Web Design",
   ];
 
+  const semesters = [
+    "Semester 1",
+    "Semester 2",
+    "Semester 3",
+    "Semester 4",
+    "Semester 5",
+    "Semester 6",
+    "Semester 7",
+    "Semester 8"
+  ];
+
+  const allClasses = ['BSEM', 'BBIT', 'BIT', 'BICT'];
+
   const [showModuleCheckboxes, setShowModuleCheckboxes] = useState(false);
   const [selectedModule, setSelectedModule] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState("");
   const [moduleDetails, setModuleDetails] = useState({
     semester: "",
-    classes: [],
+    classes: []
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLecturerInfo({
       ...lecturerInfo,
-      [name]: value,
+      [name]: value
     });
   };
 
   const handleModuleSelection = (module) => {
     setSelectedModule(module);
+    setSelectedSemester("");
     setModuleDetails({ semester: "", classes: [] });
   };
 
@@ -45,32 +66,43 @@ function CreateLecturer({ onSave, onCancelCreate }) {
     setShowModuleCheckboxes(!showModuleCheckboxes);
   };
 
-  const handleSemesterChange = (e) => {
-    setModuleDetails({ ...moduleDetails, semester: e.target.value });
+  const handleSemesterChange = (semester) => {
+    setSelectedSemester(semester);
+    setModuleDetails({ semester, classes: [] });
   };
-  
-  const handleClassesChange = (e) => {
-    const classes = e.target.value.split(',').map(c => c.trim());
-    setModuleDetails({ ...moduleDetails, classes });
+
+  const handleClassChange = (classValue) => {
+    if (moduleDetails.classes.includes(classValue)) {
+      setModuleDetails({
+        ...moduleDetails,
+        classes: moduleDetails.classes.filter((c) => c !== classValue)
+      });
+    } else {
+      setModuleDetails({
+        ...moduleDetails,
+        classes: [...moduleDetails.classes, classValue]
+      });
+    }
   };
 
   const handleAddModuleDetails = () => {
-    if (selectedModule) {
+    if (selectedModule && selectedSemester) {
       const moduleInfo = {
         moduleName: selectedModule,
         details: {
-          semester: moduleDetails.semester,
-          classes: moduleDetails.classes,
-        },
+          semester: selectedSemester,
+          classes: moduleDetails.classes
+        }
       };
-      
+
       setLecturerInfo({
         ...lecturerInfo,
-        modules: [...lecturerInfo.modules, moduleInfo],
+        modules: [...lecturerInfo.modules, moduleInfo]
       });
-      
+
       // Clear the module details and deselect the module
       setSelectedModule("");
+      setSelectedSemester("");
       setModuleDetails({ semester: "", classes: [] });
     }
   };
@@ -79,11 +111,19 @@ function CreateLecturer({ onSave, onCancelCreate }) {
     return lecturerInfo.modules.some((m) => m.moduleName === module);
   };
 
+  const isSemesterChecked = (semester) => {
+    return selectedSemester === semester;
+  };
+
+  const isClassChecked = (classValue) => {
+    return moduleDetails.classes.includes(classValue);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Call the onSave function to save the lecturer information
     onSave(lecturerInfo);
-    
+
     // Log the selected modules with details
     console.log("Selected Modules with Details:", lecturerInfo);
   };
@@ -115,15 +155,92 @@ function CreateLecturer({ onSave, onCancelCreate }) {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="department">Department:</label>
+          <div className="gender-radio-container">
+          <label>Gender:</label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="Male"
+                checked={lecturerInfo.gender === "Male"}
+                onChange={handleChange}
+              />
+              <span>Male</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="Female"
+                checked={lecturerInfo.gender === "Female"}
+                onChange={handleChange}
+              />
+              <span>Female</span>
+              
+            </label>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="address">Address:</label>
           <input
             type="text"
-            name="department"
-            id="department"
-            value={lecturerInfo.department}
+            name="address"
+            value={lecturerInfo.address}
             onChange={handleChange}
           />
         </div>
+
+        <div className="form-group">
+          <label htmlFor="department">Department:</label>
+          <select
+            name="department"
+            value={lecturerInfo.department}
+            onChange={handleChange}
+          >
+            <option value="">Select Department</option>
+            <option value="Department A">Department A</option>
+            <option value="Department B">Department B</option>
+            <option value="Department C">Department C</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="dateOfBirth">Date of Birth:</label>
+          <input
+            type="date"
+            name="dateOfBirth"
+            value={lecturerInfo.dateOfBirth}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="qualification">Qualification:</label>
+          <input
+            type="text"
+            name="qualification"
+            value={lecturerInfo.qualification}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={lecturerInfo.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="contact">Contact:</label>
+          <input
+            type="text"
+            name="contact"
+            value={lecturerInfo.contact}
+            onChange={handleChange}
+          />
+        </div>
+
         <div className="form-group">
           <label>Select Modules:</label>
           <button onClick={handleDropdownToggle}>Toggle Modules</button>
@@ -150,23 +267,49 @@ function CreateLecturer({ onSave, onCancelCreate }) {
           <div className="module-details-form">
             <h3>{selectedModule} Details</h3>
             <div className="form-group">
-              <label htmlFor="semester">Semester:</label>
-              <input
-                type="text"
-                name="semester"
-                value={moduleDetails.semester}
-                onChange={handleSemesterChange}
-              />
+              <label>Select Semester:</label>
+              <div className="semester-container">
+                {semesters.map((semester) => (
+                  <div className="lect_semester" key={semester}>
+                    <div className="semester">
+                      <label key={semester}>
+                        <input
+                          type="radio"
+                          name="semester"
+                          value={semester}
+                          checked={isSemesterChecked(semester)}
+                          onChange={() => handleSemesterChange(semester)}
+                        />
+                        {semester}
+                      </label>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="classes">Classes (comma-separated):</label>
-              <input
-                type="text"
-                name="classes"
-                value={moduleDetails.classes.join(', ')}
-                onChange={handleClassesChange}
-              />
-            </div>
+            {selectedSemester && (
+              <div className="form-group">
+                <label>Select Classes:</label>
+                <div className="classes-mainContainer">
+                  {allClasses.map((classValue) => (
+                    <div className="classess-container" key={classValue}>
+                      <div className="classess">
+                        <label key={classValue}>
+                          <input
+                            type="checkbox"
+                            name="classes"
+                            value={classValue}
+                            checked={isClassChecked(classValue)}
+                            onChange={() => handleClassChange(classValue)}
+                          />
+                          {classValue}
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             <button
               type="button"
               className="add-module-details-button"
@@ -176,6 +319,7 @@ function CreateLecturer({ onSave, onCancelCreate }) {
             </button>
           </div>
         )}
+
         <button type="submit" className="add-lecturer-button">
           Save Lecturer
         </button>

@@ -125,11 +125,14 @@ function AdminPanel(props) {
 
   return (
     <div className="admin-panel">
-      <div className="navbar">
+      <div className="adminNavbar">
+        <h2>LUCT FACULTY MODULE ALLOCATION SYSTEM</h2>
+        <div className='navs'>
         <span className="admin-name">{adminName}</span>
         <button className="logout-button" onClick={handleLogout}>
           Log Out
         </button>
+        </div>
       </div>
       <div className={`sidebar ${isSidebarVisible ? 'visible' : ''}`}>
         <h2 className="event-title">Admin Panel</h2>

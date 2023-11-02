@@ -61,7 +61,7 @@
   .main-content {
     margin-left: 23%;
     flex: 1;
-    padding: 20px;
+    padding: 70px 20px;
     background-color: #f4f4f4;
   }
   
@@ -105,9 +105,9 @@
 }
 
 /* Navbar styles */
-.navbar {
+.adminNavbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background-color: #333;
@@ -119,6 +119,7 @@
   left: 0;
   right: 0;
   z-index: 100;
+  width: 100%;
 }
 
 .logout-button {
