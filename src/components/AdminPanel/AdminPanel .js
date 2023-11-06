@@ -18,6 +18,7 @@ function AdminPanel(props) {
   const [departmentData, setDepartmentData] = useState([]);
   const [modulesData, setModuledata] = useState([]);
   const [editingDepartment, setEditingDepartment] = useState(null);
+  const [newLecturer, setNewLecturer] = useState([]);
   const [editingModule, setEditingModule] = useState(null);
   const [editingLecturer, setEditingLecturer] = useState(null); // Add state for editing lecturer
   const [adminName] = useState("Admin User"); // Replace with the actual admin's name
@@ -68,6 +69,10 @@ function AdminPanel(props) {
   }
 
 
+  function addNewLecturer(lecturerData) {
+    setNewLecturer([...newLecturer, lecturerData]);
+    // handleCategoryClick('lecturer'); 
+  }
 
   const categoryComponents = {
     dashboard: <Dashboard />,
@@ -80,8 +85,8 @@ function AdminPanel(props) {
       />
     ),
     faculty: <Faculty />,
-    lecturer: <Lecturer onShowCreateLecturer={handleShowCreateLecturer}/>,
-    createLecturer: <CreatLecture onCancelCreate={cancelCreateLecturer} />,
+    lecturer: <Lecturer newLecturer={newLecturer} onShowCreateLecturer={handleShowCreateLecturer} onSaveNewLecturer={addNewLecturer} handleCategoryClick={handleCategoryClick}/>,
+    createLecturer: <CreatLecture onCancelCreate={cancelCreateLecturer} onSaveNewLecturer={addNewLecturer} handleCategoryClick={handleCategoryClick}/>,
     module: <Module modulesData={modulesData} onShowCreateModule={handleShowCreateModule} />,
     createDepartment: <CreateDepartment onSave={addNewDepartment} onShowDepartment={handleShowDepartment}/>,
     editDepartment: (
@@ -97,13 +102,6 @@ function AdminPanel(props) {
         onCancelCreate={cancelCreateModule}
       />
     ),
-    // editModule: (
-    //   <EditModule
-    //     module={editingModule}
-    //     onEditModule={editModule}
-    //     onCancelEdit={cancelEditModule}
-    //   />
-    // ),
   };
 
   function addNewDepartment(newDept) {

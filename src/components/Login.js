@@ -100,52 +100,6 @@ const Login = () => {
     </>
 )
 
-
-
-
-
-  // return (
-  //   <div>
-  //     <h1>Login</h1>
-      // <div>
-      //   <label>
-      //     <input
-      //       type="radio"
-      //       name="role"
-      //       value="admin"
-      //       checked={role === 'admin'}
-      //       onChange={() => setRole('admin')}
-      //     />
-      //     Admin
-      //   </label>
-      //   <label>
-      //     <input
-      //       type="radio"
-      //       name="role"
-      //       value="lecturer"
-      //       checked={role === 'lecturer'}
-      //       onChange={() => setRole('lecturer')}
-      //     />
-      //     Lecturer
-      //   </label>
-      // </div>
-      // <input
-      //   type="text"
-      //   placeholder="Email"
-      //   value={email}
-      //   onChange={(e) => setEmail(e.target.value)}
-      // />
-      // <input
-      //   type="password"
-      //   placeholder="Password"
-      //   value={password}
-      //   onChange={(e) => setPassword(e.target.value)}
-      // />
-  //     <button onClick={handleLogin}>Login</button>
-  //     <p>{message}</p>
-  //   </div>
-  // );
-
 };
 
 export default Login;

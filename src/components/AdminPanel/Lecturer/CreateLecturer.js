@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import './CreateLecturer.css';
 
-function CreateLecturer({ onSave, onCancelCreate }) {
+function CreateLecturer({ onSave, onCancelCreate, onSaveNewLecturer }) {
   const [lecturerInfo, setLecturerInfo] = useState({
+    id: Math.floor(Math.random() * 5),
     firstname: "",
     lastname: "",
     department: "", // Updated to use a dropdown
@@ -10,7 +11,8 @@ function CreateLecturer({ onSave, onCancelCreate }) {
     gender: "", // New field for lecturer's gender
     dateOfBirth: "", // New field for date of birth
     qualification: "", // New field for lecturer's qualification
-    email: "", // New field for lecturer's email
+    email: "",
+    password: "", // New field for lecturer's email
     contact: "", // New field for lecturer's contact
     modules: [],
   });
@@ -122,10 +124,7 @@ function CreateLecturer({ onSave, onCancelCreate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Call the onSave function to save the lecturer information
-    onSave(lecturerInfo);
-
-    // Log the selected modules with details
-    console.log("Selected Modules with Details:", lecturerInfo);
+    onSaveNewLecturer(lecturerInfo);
   };
 
   return (
@@ -232,6 +231,15 @@ function CreateLecturer({ onSave, onCancelCreate }) {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="password">Assign Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={lecturerInfo.password}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="contact">Contact:</label>
           <input
             type="text"
@@ -320,7 +328,7 @@ function CreateLecturer({ onSave, onCancelCreate }) {
           </div>
         )}
 
-        <button type="submit" className="add-lecturer-button">
+        <button type="submit" className="add-lecturer-button" >
           Save Lecturer
         </button>
         <button onClick={onCancelCreate}>Cancel</button>

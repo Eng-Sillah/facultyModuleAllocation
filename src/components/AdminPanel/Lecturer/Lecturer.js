@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CreateLecturer from './CreateLecturer';
 
-function Lecturer({ onShowCreateLecturer }) {
+function Lecturer({ onShowCreateLecturer, newLecturer, onSaveNewLecturer, handleCategoryClick }) {
   const [selectedLecturer, setSelectedLecturer] = useState(null);
   const [showCreateLecturer, setShowCreateLecturer] = useState(false);
-  const [lecturers, setLecturers] = useState([
+
+  const sampleLecturerData = [
     {
       id: 1,
       firstname: 'John',
@@ -12,6 +13,12 @@ function Lecturer({ onShowCreateLecturer }) {
       gender: 'Male',
       name: 'Lecturer 1',
       department: 'Department A',
+      address: 'Shell Old Road',
+      dateOfBirth: "", // New field for date of birth
+      qualification: "", // New field for lecturer's qualification
+      email: "", // New field for lecturer's email
+      contact: "", // New field for lecturer's contact
+      modules: [],
     },
     {
       id: 2,
@@ -20,9 +27,23 @@ function Lecturer({ onShowCreateLecturer }) {
       gender: 'Female',
       name: 'Lecturer 2',
       department: 'Department B',
+      address: 'Shell Old Road',
+      dateOfBirth: "", // New field for date of birth
+      qualification: "", // New field for lecturer's qualification
+      email: "", // New field for lecturer's email
+      contact: "", // New field for lecturer's contact
+      modules: [],
     },
     // Add more lecturer data as needed
-  ]);
+  ]
+  const [lecturers, setLecturers] = useState([...newLecturer, ...sampleLecturerData]);
+
+  // useEffect(() => {
+  //   if (newLecturer) {
+  //     // Append the new lecturer to the existing list of lecturers
+  //     setLecturers([...lecturers, newLecturer]);
+  //   }
+  // }, [newLecturer]);
 
   // Function to show the CreateLecturer component
   const handleShowCreateLecturer = () => {
@@ -32,6 +53,7 @@ function Lecturer({ onShowCreateLecturer }) {
   // Function to reset the view when switching to the Lecturer tab
   const handleShowLecturer = () => {
     setShowCreateLecturer(false);
+    onShowCreateLecturer('createLecturer');
   };
 
   // Function to cancel creating a lecturer
@@ -39,24 +61,20 @@ function Lecturer({ onShowCreateLecturer }) {
     setShowCreateLecturer(false);
   };
 
-  function addNewLecturer() {
-    console.log("Hello");
-    // You can add your logic to add a new lecturer here.
-  }
-
   return (
     <div className="lecturer">
       {selectedLecturer ? (
-        /* Display details of selected lecturer if any */
+        /* Display details of the selected lecturer if any */
         <div>
           {/* You can add details of the selected lecturer here */}
         </div>
       ) : showCreateLecturer ? (
         /* Display CreateLecturer component when creating a new lecturer */
-        <CreateLecturer onSave={addNewLecturer} onCancelCreate={cancelCreateLecturer} />
+        <CreateLecturer onCancel={() => onShowCreateLecturer(false)} onCancelCreate={cancelCreateLecturer}  onSaveNewLecturer={onSaveNewLecturer} />
       ) : (
         /* Display the list of lecturers */
         <div>
+          <h1>Lecturer List</h1>
           <table>
             <thead>
               <tr>
