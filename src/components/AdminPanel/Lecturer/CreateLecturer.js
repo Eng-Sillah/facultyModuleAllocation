@@ -243,7 +243,7 @@ function CreateLecturer({ onSave, onCancelCreate }) {
 
         <div className="form-group">
           <label>Select Modules:</label>
-          <button onClick={handleDropdownToggle}>Toggle Modules</button>
+          <button onClick={handleDropdownToggle}>View Modules</button>
           {showModuleCheckboxes && (
             <div className="module-checkboxes">
               {allModules.map((module) => (
