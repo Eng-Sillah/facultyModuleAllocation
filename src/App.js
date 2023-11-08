@@ -58,7 +58,7 @@ function App() {
           path="/login"
           element={<Login sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer} />}
         />
-        <Route path="/admin" element={<AdminPanel sampleLecturerData={sampleLecturerData} />} />
+        <Route path="/admin" element={<AdminPanel sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer}/>} />
         <Route path="/lecturer" element={<LecturerPanel sampleLecturerData={sampleLecturerData}/>} />
 
         <Route index element={<Navigate to="/login" />} />
