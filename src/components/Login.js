@@ -3,7 +3,7 @@ import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ sampleLecturerData }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('admin'); // Default to 'admin'
@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    const result = login(email, password, role);
+    const result = login(email, password, role, sampleLecturerData);
 
     if (result.success) {
       setMessage(`Login successful as ${role}`);
@@ -26,6 +26,7 @@ const Login = () => {
       setMessage('Login failed');
     }
   };
+
 
   
   return (

@@ -21,13 +21,22 @@ function Faculty() {
   return (
     <div className="faculty">
       <h1>Faculties</h1>
-      <ul>
-        {faculties.map((faculty, index) => (
-          <li key={index}>
-            <strong>Code:</strong> {faculty.code}, <strong>Name:</strong> {faculty.name}
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {faculties.map((faculty, index) => (
+            <tr key={index}>
+              <td>{faculty.code}</td>
+              <td>{faculty.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <button className="add-faculty-button" onClick={handleAddFaculty}>
         Add Faculty
       </button>

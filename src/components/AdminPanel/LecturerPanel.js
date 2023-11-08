@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LecturerPanel.css'
 
-function LecturerPanel() {
+function LecturerPanel({ sampleLecturerData }) {
 // Sample modules data
 const sampleModules = [
   {
@@ -109,12 +109,12 @@ const sampleModules = [
   const handleLogout = () => {
       navigate('/login');
   };
-
+console.log(sampleLecturerData)
 
   return (
     <div className="lecturer">
       <div className="navbar">
-        <span className="admin-name">User</span>
+        <span className="admin-name">user</span>
         <button className="logout-button" onClick={handleLogout}>
           Log Out
         </button>

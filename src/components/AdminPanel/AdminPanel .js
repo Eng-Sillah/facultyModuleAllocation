@@ -85,7 +85,7 @@ function AdminPanel(props) {
       />
     ),
     faculty: <Faculty />,
-    lecturer: <Lecturer newLecturer={newLecturer} onShowCreateLecturer={handleShowCreateLecturer} onSaveNewLecturer={addNewLecturer} handleCategoryClick={handleCategoryClick}/>,
+    lecturer: <Lecturer newLecturer={newLecturer} onShowCreateLecturer={handleShowCreateLecturer} handleCategoryClick={handleCategoryClick} sampleLecturerData={props.sampleLecturerData} addNewLecturer={props.addNewLecturer}/>,
     createLecturer: <CreatLecture onCancelCreate={cancelCreateLecturer} onSaveNewLecturer={addNewLecturer} handleCategoryClick={handleCategoryClick}/>,
     module: <Module modulesData={modulesData} onShowCreateModule={handleShowCreateModule} />,
     createDepartment: <CreateDepartment onSave={addNewDepartment} onShowDepartment={handleShowDepartment}/>,
