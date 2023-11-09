@@ -3,7 +3,7 @@ import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 
-const Login = ({ sampleLecturerData }) => {
+const Login = ({ sampleLecturerData, onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('admin'); // Default to 'admin'
@@ -15,7 +15,7 @@ const Login = ({ sampleLecturerData }) => {
 
     if (result.success) {
       setMessage(`Login successful as ${role}`);
-
+      onLogin(result); 
       // Redirect based on the role after a successful login
       if (role === 'admin') {
         navigate('/admin');
@@ -85,6 +85,7 @@ const Login = ({ sampleLecturerData }) => {
                         <div>
                             <button
                                 onClick={handleLogin}
+                                type='button'
                             >
                                 Login
                             </button>

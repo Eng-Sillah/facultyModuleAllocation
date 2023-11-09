@@ -127,7 +127,7 @@ function AdminPanel(props) {
         <h2>LUCT FACULTY MODULE ALLOCATION SYSTEM</h2>
         <div className='navs'>
         <span className="admin-name">{adminName}</span>
-        <button className="logout-button" onClick={handleLogout}>
+        <button className="logout-button" type='button' onClick={handleLogout}>
           Log Out
         </button>
         </div>

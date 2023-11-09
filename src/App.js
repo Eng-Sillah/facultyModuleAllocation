@@ -16,7 +16,6 @@ function App() {
       firstname: 'John',
       lastname: 'Doe',
       gender: 'Male',
-      name: 'Lecturer 1',
       department: 'Department A',
       address: 'Shell Old Road',
       dateOfBirth: "", // New field for date of birth
@@ -31,7 +30,6 @@ function App() {
       firstname: 'Jane',
       lastname: 'Smith',
       gender: 'Female',
-      name: 'Lecturer 2',
       department: 'Department B',
       address: 'Shell Old Road',
       dateOfBirth: "", // New field for date of birth
@@ -51,15 +49,26 @@ function App() {
     setSampleLecturerData([newLecturer, ...sampleLecturerData]);
   };
 
+  const handleLogin = (loginResult) => {
+    setUser(loginResult); // Store the login result in the user state
+    if (loginResult.lecturer) {
+      // If it's a lecturer, you can store the lecturer data or handle it as needed
+      console.log(loginResult.lecturer);
+    }
+  };
+
   return (
     <div className="App">
       <Routes>
         <Route
           path="/login"
-          element={<Login sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer} />}
+          element={<Login sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer} onLogin={handleLogin}/>}
         />
+
+        {/* <Route path="/login" element={user ? <Navigate to="/admin" /> : <Login onLogin={handleLogin} sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer}/>} /> */}
+
         <Route path="/admin" element={<AdminPanel sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer}/>} />
-        <Route path="/lecturer" element={<LecturerPanel sampleLecturerData={sampleLecturerData}/>} />
+        <Route path="/lecturer" element={<LecturerPanel lecturerData={user}/>} />
 
         <Route index element={<Navigate to="/login" />} />
       </Routes>

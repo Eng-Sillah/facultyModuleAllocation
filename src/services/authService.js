@@ -8,7 +8,7 @@ export const login = (email, password, role, lecturerData) => {
     const lecturer = lecturerData.find((lecturer) => lecturer.email === email && lecturer.password === password);
 
     if (lecturer) {
-      return { success: true, message: 'Login successful as Lecturer' };
+      return { success: true, message: 'Login successful as Lecturer', lecturer: lecturer }; // Include the lecturer data in the response
     }
   }
 
