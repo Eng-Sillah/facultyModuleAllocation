@@ -16,6 +16,9 @@ function App() {
       firstname: 'John',
       lastname: 'Doe',
       gender: 'Male',
+      name: 'Testing Modules 01',
+      code: "Test 001",
+      creditHours: 5,
       department: 'Department A',
       address: 'Shell Old Road',
       dateOfBirth: "", // New field for date of birth
@@ -23,13 +26,23 @@ function App() {
       email: "john@gmail.com",
       password: "12345", // New field for lecturer's email
       contact: "", // New field for lecturer's contact
-      modules: [],
+      modules: [
+        {
+          name: 'BSEM2101',
+          day: 'Tuesday',
+          time: '8:30 AM',
+          room: 'Class Room 2'
+        }
+      ],
     },
     {
       id: 2,
       firstname: 'Jane',
       lastname: 'Smith',
       gender: 'Female',
+      name: 'Introduction to Programming',
+      code: "Test 002",
+      creditHours: 6,
       department: 'Department B',
       address: 'Shell Old Road',
       dateOfBirth: "", // New field for date of birth
@@ -37,7 +50,14 @@ function App() {
       email: "jane@gmail.com",
       password: "12345", // New field for lecturer's email
       contact: "", // New field for lecturer's contact
-      modules: [],
+      modules: [
+        {
+          name: 'BSEM2101',
+          day: 'Tuesday',
+          time: '8:30 AM',
+          room: 'Class Room 2'
+        }
+      ],
     },
     // Add more lecturer data as needed
   ]);

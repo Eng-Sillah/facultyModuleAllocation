@@ -7,6 +7,7 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
     id: Math.floor(Math.random() * 5),
     firstname: "",
     lastname: "",
+    name: "",
     department: "", // Updated to use a dropdown
     address: "", // New field for lecturer's address
     gender: "", // New field for lecturer's gender
@@ -95,12 +96,14 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
         details: {
           semester: selectedSemester,
           classes: moduleDetails.classes
-        }
+        },
+
       };
 
       setLecturerInfo({
         ...lecturerInfo,
-        modules: [...lecturerInfo.modules, moduleInfo]
+        modules: [...lecturerInfo.modules, moduleInfo],
+        name: selectedModule,
       });
 
       // Clear the module details and deselect the module

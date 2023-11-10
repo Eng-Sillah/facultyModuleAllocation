@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import CreateDepartment from './Departments/CreateDepartment';
 import EditDepartment from './Departments/EditDepartment';
 import CreateModule from './Module/CreateModule';
+import EditLect from "./Lecturer/EditLect";
 import EditModule from './Module/EditModule';
 import './AdminPanel.css';
 
@@ -96,6 +97,7 @@ function AdminPanel(props) {
         onCancelEdit={cancelEditDepartment}
       />
     ),
+    editLecturer: <EditLect />,
     createModule: (
       <CreateModule
         onSave={addNewModule}
