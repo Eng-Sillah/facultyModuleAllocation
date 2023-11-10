@@ -170,7 +170,7 @@ console.log(sampleModules)
                          <tr key={index}>
                          <td>{classDetail.name || 'DefaultClassName'}</td>
                          <td>{classDetail.day || 'DefaultDay'}</td>
-                         <td>{classDetail.time || 'DefaultTime'}</td>
+                         <td>{classDetail.time || 'DefaultTimee'}</td>
                          <td>{classDetail.room || 'DefaultRoom'}</td>
                          <td>{classDetail.hours || 'DefaultHours'}</td>
                        </tr>
