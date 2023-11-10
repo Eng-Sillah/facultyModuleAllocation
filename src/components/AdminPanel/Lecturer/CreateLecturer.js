@@ -91,28 +91,30 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
 
   const handleAddModuleDetails = () => {
     if (selectedModule && selectedSemester) {
+      // Create a module code based on the selected module
+      const moduleCode = selectedModule.toUpperCase().slice(0, 4);
+  
       const moduleInfo = {
         moduleName: selectedModule,
+        moduleCode,  // Add the module code property
         details: {
           semester: selectedSemester,
           classes: moduleDetails.classes
         },
-
       };
-
+  
       setLecturerInfo({
         ...lecturerInfo,
         modules: [...lecturerInfo.modules, moduleInfo],
         name: selectedModule,
       });
-
+  
       // Clear the module details and deselect the module
       setSelectedModule("");
       setSelectedSemester("");
       setModuleDetails({ semester: "", classes: [] });
     }
   };
-
   const isModuleChecked = (module) => {
     return lecturerInfo.modules.some((m) => m.moduleName === module);
   };

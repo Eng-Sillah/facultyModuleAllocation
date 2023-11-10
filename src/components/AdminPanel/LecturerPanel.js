@@ -139,7 +139,7 @@ console.log(sampleModules)
             {sampleModules.map((modules) => (
               modules.modules.map(module => (
                 <tr key={module.code} onClick={() => setSelectedModule(module)}>
-                <td>{module.code}</td>
+                <td>{module.moduleCode}</td>
                 <td>{module.moduleName}</td>
                 <td>{module.creditHours}</td>
               </tr>
