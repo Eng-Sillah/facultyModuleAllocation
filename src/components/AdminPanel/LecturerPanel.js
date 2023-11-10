@@ -159,7 +159,7 @@ console.log(sampleModules)
               </tr>
               <tr>
                 <th>Program</th>
-                <th>Day</th>
+                <th>Semester</th>
                 <th>Time</th>
                 <th>Room</th>
                 <th>Hours</th>
@@ -169,7 +169,7 @@ console.log(sampleModules)
               {selectedModule.details.classes.map((classDetail, index) => (
                          <tr key={index}>
                          <td>{classDetail|| 'DefaultClassName'}</td>
-                         <td>{classDetail.day || 'DefaultDay'}</td>
+                         <td>{selectedModule.details.semester|| 'DefaultDay'}</td>
                          <td>{classDetail.time || 'DefaultTimee'}</td>
                          <td>{classDetail.room || 'DefaultRoom'}</td>
                          <td>{classDetail.hours || 'DefaultHours'}</td>
