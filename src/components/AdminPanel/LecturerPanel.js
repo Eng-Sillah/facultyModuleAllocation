@@ -158,7 +158,7 @@ console.log(sampleModules)
                 <th colSpan="5" className='selectedModule'>{selectedModule.moduleName}</th>
               </tr>
               <tr>
-                <th>Class Name</th>
+                <th>Program</th>
                 <th>Day</th>
                 <th>Time</th>
                 <th>Room</th>
@@ -168,7 +168,7 @@ console.log(sampleModules)
             <tbody>
               {selectedModule.details.classes.map((classDetail, index) => (
                          <tr key={index}>
-                         <td>{classDetail.name || 'DefaultClassName'}</td>
+                         <td>{classDetail|| 'DefaultClassName'}</td>
                          <td>{classDetail.day || 'DefaultDay'}</td>
                          <td>{classDetail.time || 'DefaultTimee'}</td>
                          <td>{classDetail.room || 'DefaultRoom'}</td>
