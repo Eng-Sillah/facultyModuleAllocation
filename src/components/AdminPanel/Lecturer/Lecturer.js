@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import CreateLecturer from './CreateLecturer';
+import LecturerPanel from '../LecturerPanel';
 
 function Lecturer({ onShowCreateLecturer, newLecturer, handleCategoryClick, sampleLecturerData, addNewLecturer }) {
   const [selectedLecturer, setSelectedLecturer] = useState(null);
   const [showCreateLecturer, setShowCreateLecturer] = useState(false);
-
   const [lecturers, setLecturers] = useState([...newLecturer, ...sampleLecturerData]);
-
 
   // Function to show the CreateLecturer component
   const handleShowCreateLecturer = () => {
@@ -24,12 +23,23 @@ function Lecturer({ onShowCreateLecturer, newLecturer, handleCategoryClick, samp
     setShowCreateLecturer(false);
   };
 
+  // Function to view details of a lecturer
+  const viewLecturerDetails = (lecturer) => {
+    setSelectedLecturer(lecturer);
+  };
+
+  // Function to clear the selected lecturer details
+  const clearSelectedLecturer = () => {
+    setSelectedLecturer(null);
+  };
+
   return (
     <div className="lecturer">
       {selectedLecturer ? (
         /* Display details of the selected lecturer if any */
         <div>
-          {/* You can add details of the selected lecturer here */}
+          <LecturerPanel lecturerData={{ lecturer: selectedLecturer }} />
+          <button onClick={clearSelectedLecturer}>Back to List</button>
         </div>
       ) : showCreateLecturer ? (
         /* Display CreateLecturer component when creating a new lecturer */
@@ -58,6 +68,7 @@ function Lecturer({ onShowCreateLecturer, newLecturer, handleCategoryClick, samp
                   <td>{lecturer.gender}</td>
                   <td>{lecturer.department}</td>
                   <td>
+                    <button onClick={() => viewLecturerDetails(lecturer)}>View Details</button>
                     <button>Edit</button>
                     <button>Delete</button>
                   </td>
