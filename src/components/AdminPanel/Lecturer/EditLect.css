@@ -1,0 +1,137 @@
+ /* Module dropdown styles */
+ .module-dropdown {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .module-dropdown button {
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .module-dropdown button:hover {
+    background-color: #0056b3;
+  }
+  
+  .module-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .module-checkboxes .modules {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+  .module-checkboxes .modules label{
+    width: max-content;
+    margin: 0;
+  }
+
+  .module-checkboxes .modules .lectModule {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+.semester-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.semester-container .lect_semester {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.semester-container .lect_semester .semester {
+    padding: 5px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.classes-mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.classes-mainContainer .classess-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.classess-container .classess {
+    padding: 5px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  .module-checkboxes .modules input {
+    margin: 0;
+    padding: 0;
+  }
+  .module-checkboxes label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .module-details-form {
+    margin: 10px 0 40px 0;
+    border-top: 1px solid grey;
+  }
+  /* Button styles */
+  .add-lecturer-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .add-lecturer-button:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #d32f2f;
+  }
+  

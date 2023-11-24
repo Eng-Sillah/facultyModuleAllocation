@@ -79,6 +79,14 @@ function App() {
     }
   };
 
+  const updateLecturer = (updatedLecturer) => {
+    setSampleLecturerData((prevLecturers) =>
+      prevLecturers.map((lecturer) =>
+        lecturer.id === updatedLecturer.id ? { ...lecturer, ...updatedLecturer } : lecturer
+      )
+    );
+  };
+
   return (
     <div className="App">
       <Routes>
@@ -89,7 +97,7 @@ function App() {
 
         {/* <Route path="/login" element={user ? <Navigate to="/admin" /> : <Login onLogin={handleLogin} sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer}/>} /> */}
 
-        <Route path="/admin" element={<AdminPanel sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer}/>} />
+        <Route path="/admin" element={<AdminPanel sampleLecturerData={sampleLecturerData} addNewLecturer={addNewLecturer} onUpdateLecturer={updateLecturer}/>}  />
         <Route path="/lecturer" element={<LecturerPanel lecturerData={user}/>} />
 
         <Route index element={<Navigate to="/login" />} />

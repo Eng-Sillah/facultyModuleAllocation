@@ -75,6 +75,22 @@ function AdminPanel(props) {
     // handleCategoryClick('lecturer'); 
   }
 
+  function handleEditLecturer(lecturer) {
+    setEditingLecturer(lecturer);
+    handleCategoryClick('editLecturer');
+  }
+
+  function saveEditedLecturer(updatedLecturer) {
+    // Use the updateLecturer function from props to update the lecturer details.
+    // props.onUpdateLecturer(updatedLecturer);
+    console.log(updatedLecturer)
+    // Clear the editing lecturer state
+    setEditingLecturer(null);
+
+    // Navigate back to the Lecturer page
+    handleCategoryClick('lecturer');
+  }
+
   const categoryComponents = {
     dashboard: <Dashboard />,
     department: (
@@ -86,7 +102,7 @@ function AdminPanel(props) {
       />
     ),
     faculty: <Faculty />,
-    lecturer: <Lecturer newLecturer={newLecturer} onShowCreateLecturer={handleShowCreateLecturer} handleCategoryClick={handleCategoryClick} sampleLecturerData={props.sampleLecturerData} addNewLecturer={props.addNewLecturer}/>,
+    lecturer: <Lecturer newLecturer={newLecturer} onShowCreateLecturer={handleShowCreateLecturer} handleCategoryClick={handleCategoryClick} sampleLecturerData={props.sampleLecturerData} addNewLecturer={props.addNewLecturer} onShowEditLecturer={handleEditLecturer} lecturer={editingLecturer} onSaveEdit={saveEditedLecturer} onUpdateLecturer={props.onUpdateLecturer}/>,
     createLecturer: <CreatLecture onCancelCreate={cancelCreateLecturer} onSaveNewLecturer={addNewLecturer} handleCategoryClick={handleCategoryClick}/>,
     module: <Module modulesData={modulesData} onShowCreateModule={handleShowCreateModule} />,
     createDepartment: <CreateDepartment onSave={addNewDepartment} onShowDepartment={handleShowDepartment}/>,
@@ -97,7 +113,7 @@ function AdminPanel(props) {
         onCancelEdit={cancelEditDepartment}
       />
     ),
-    editLecturer: <EditLect />,
+    editLecturer: <EditLect lecturer={editingLecturer} onSaveEdit={saveEditedLecturer} onUpdateLecturer={props.onUpdateLecturer} />,
     createModule: (
       <CreateModule
         onSave={addNewModule}
