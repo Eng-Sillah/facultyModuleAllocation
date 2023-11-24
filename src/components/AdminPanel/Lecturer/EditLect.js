@@ -139,6 +139,7 @@ function EditLect({ lecturer, onCancelEdit, onSaveEdit, onUpdateEditedLecturer, 
         setConfirmationMessage("Lecturer details updated successfully!");
       };
 
+      
     const renderSuccessMessage = (
         <div className="edit-lecturer-container">
           <h1>Update Successful</h1>

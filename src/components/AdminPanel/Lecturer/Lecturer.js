@@ -47,6 +47,12 @@ function Lecturer({ onShowCreateLecturer, newLecturer, handleCategoryClick, samp
     setSelectedLecturer(null);
   };
 
+  const handleDelete = (lecturerId) => {
+    // Implement the logic to delete the lecturer with the specified ID
+    const updatedLecturers = lecturers.filter((lecturer) => lecturer.id !== lecturerId);
+    setLecturers(updatedLecturers);
+  };
+
   return (
     <div className="lecturer">
       {selectedLecturer ? (
@@ -87,7 +93,7 @@ function Lecturer({ onShowCreateLecturer, newLecturer, handleCategoryClick, samp
                   <td>
                     <button onClick={() => viewLecturerDetails(lecturer)}>View Details</button>
                     <button onClick={() => editLecturer(lecturer)}>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={() => handleDelete(lecturer.id)}>Delete</button>
                   </td>
                 </tr>
               ))}
