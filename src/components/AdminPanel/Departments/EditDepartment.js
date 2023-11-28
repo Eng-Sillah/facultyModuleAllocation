@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function EditDepartment({ department, onEditDepartment, onCancel }) {
+function EditDepartment({ department, onEditDepartment, onCancel, onUpdateDepartment }) {
   const [editedDepartment, setEditedDepartment] = useState(department);
 
   const handleInputChange = (e) => {
@@ -10,6 +10,7 @@ function EditDepartment({ department, onEditDepartment, onCancel }) {
 
   const handleSave = () => {
     onEditDepartment(editedDepartment);
+    onUpdateDepartment(editedDepartment); // Invoke the callback to update the department data
   };
 
   return (

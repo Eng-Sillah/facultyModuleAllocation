@@ -5,7 +5,7 @@ function CreateDepartment(props) {
   const [newDepartment, setNewDepartment] = useState({
     name: "",
     block: "",
-    id: '',
+    id: Math.floor(Math.random() * (20 - 4 + 1)) + 4, // Generate a random ID between 4 and 20
   });
 
   const handleInputChange = (e) => {
@@ -17,10 +17,10 @@ function CreateDepartment(props) {
   };
 
   const handleSave = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // Call the onSave callback to pass the new department data
     props.onSave(newDepartment);
-    props.onShowDepartment()
+    props.onShowDepartment();
   };
 
   return (

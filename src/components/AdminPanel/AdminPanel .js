@@ -91,6 +91,21 @@ function AdminPanel(props) {
     handleCategoryClick('lecturer');
   }
 
+  function saveEditedDepartment(updatedDepartment) {
+    // Update the department data
+    const updatedDepartments = departmentData.map(dep =>
+      dep.id === updatedDepartment.id ? updatedDepartment : dep
+    );
+  
+    setDepartmentData(updatedDepartments);
+  
+    // Clear the editing department state
+    setEditingDepartment(null);
+  
+    // Navigate back to the Department page
+    handleCategoryClick('department');
+  }
+
   const categoryComponents = {
     dashboard: <Dashboard />,
     department: (
@@ -111,6 +126,7 @@ function AdminPanel(props) {
         department={editingDepartment}
         onEditDepartment={editDepartment}
         onCancelEdit={cancelEditDepartment}
+        onUpdateDepartment={saveEditedDepartment}
       />
     ),
     editLecturer: <EditLect lecturer={editingLecturer} onSaveEdit={saveEditedLecturer} onUpdateLecturer={props.onUpdateLecturer} />,

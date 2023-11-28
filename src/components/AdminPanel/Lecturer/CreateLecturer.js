@@ -42,14 +42,15 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
     "Semester 8"
   ];
 
-  const allClasses = ['BSEM', 'BBIT', 'BIT', 'BICT'];
+  const allClasses = ['BSEM101', 'BSEM102', 'BBIT', 'BIT', 'BICT'];
 
   const [showModuleCheckboxes, setShowModuleCheckboxes] = useState(false);
   const [selectedModule, setSelectedModule] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
   const [moduleDetails, setModuleDetails] = useState({
     semester: "",
-    classes: []
+    classes: [],
+    additionalClasses: [] 
   });
   const [daysOfWeek, setDaysOfWeek] = useState(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]);
 
@@ -60,6 +61,8 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
       [name]: value
     });
   };
+
+  
 
   const handleModuleSelection = (module) => {
     setSelectedModule(module);
@@ -77,19 +80,27 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
   };
 
   const handleClassChange = (classValue) => {
+    if (classValue === "BSEM") {
+      // If "BSEM" class is selected, show additional options for BSEM101 and BSEM102
+      setShowModuleCheckboxes(true);
+    } else {
+      setShowModuleCheckboxes(false);
+    }
+
     if (moduleDetails.classes.includes(classValue)) {
       setModuleDetails({
         ...moduleDetails,
-        classes: moduleDetails.classes.filter((c) => c !== classValue)
+        classes: moduleDetails.classes.filter((c) => c !== classValue),
+        additionalClasses: []
       });
     } else {
       setModuleDetails({
         ...moduleDetails,
-        classes: [...moduleDetails.classes, classValue]
+        classes: [...moduleDetails.classes, classValue],
+        additionalClasses: []
       });
     }
   };
-
   const calculateEndTime = (startTime, index) => {
     if (!startTime) {
       return ""; // or handle it in a way that makes sense for your application
@@ -104,9 +115,14 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
 
   const handleAddModuleDetails = () => {
     if (selectedModule && selectedSemester) {
+      let additionalClasses = [];
       // Create a module code based on the selected module
       const moduleCode = selectedModule.toUpperCase().slice(0, 4);
 
+            // Check if the selected module is "BSEM" and has additional classes
+            if (selectedModule === "BSEM" && moduleDetails.additionalClasses.length > 0) {
+              additionalClasses = moduleDetails.additionalClasses;
+            }
       const moduleInfo = {
         moduleName: selectedModule,
         moduleCode,  // Add the module code property
@@ -127,6 +143,7 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
               creditHour: 3, // Distribute classes over days of the week
             };
           }),
+          additionalClasses: additionalClasses,
         },
       };
 
@@ -139,7 +156,7 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
       // Clear the module details and deselect the module
       setSelectedModule("");
       setSelectedSemester("");
-      setModuleDetails({ semester: "", classes: [] });
+      setModuleDetails({ semester: "", classes: [], additionalClasses: [] });
     }
   };
 
