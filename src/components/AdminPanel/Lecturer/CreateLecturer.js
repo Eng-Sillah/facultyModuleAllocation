@@ -51,6 +51,7 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
     semester: "",
     classes: []
   });
+  const [daysOfWeek, setDaysOfWeek] = useState(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,32 +90,57 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
     }
   };
 
+  const calculateEndTime = (startTime, index) => {
+    if (!startTime) {
+      return ""; // or handle it in a way that makes sense for your application
+    }
+
+    const [hours, minutes] = startTime.split(":").map(Number);
+    const totalMinutes = hours * 60 + minutes + 180 * index; // Assuming each class is 3 hours (180 minutes)
+    const endHours = Math.floor(totalMinutes / 60);
+    const endMinutes = totalMinutes % 60;
+    return `${endHours.toString().padStart(2, "0")}:${endMinutes.toString().padStart(2, "0")}`;
+  };
+
   const handleAddModuleDetails = () => {
     if (selectedModule && selectedSemester) {
       // Create a module code based on the selected module
       const moduleCode = selectedModule.toUpperCase().slice(0, 4);
-  
+
       const moduleInfo = {
         moduleName: selectedModule,
         moduleCode,  // Add the module code property
         details: {
           semester: selectedSemester,
-          classes: moduleDetails.classes
+          classes: moduleDetails.classes,
+          // Allocate different time and attach hours for each class
+          classDetails: moduleDetails.classes.map((classValue, index) => {
+            const startTime = "09:00"; // Start time (9 AM)
+            const endTime = calculateEndTime(startTime, index + 1); // End time
+
+            return {
+              class: classValue,
+              room: `Room ${Math.floor(Math.random() * 9) + 1}`,
+              time: `${startTime} - ${endTime}`,
+              day: daysOfWeek[index % daysOfWeek.length], // Distribute classes over days of the week
+            };
+          }),
         },
       };
-  
+
       setLecturerInfo({
         ...lecturerInfo,
         modules: [...lecturerInfo.modules, moduleInfo],
         name: selectedModule,
       });
-  
+
       // Clear the module details and deselect the module
       setSelectedModule("");
       setSelectedSemester("");
       setModuleDetails({ semester: "", classes: [] });
     }
   };
+
   const isModuleChecked = (module) => {
     return lecturerInfo.modules.some((m) => m.moduleName === module);
   };
@@ -339,8 +365,6 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
             </button>
           </div>
         )}
-
-
 
         <div>
           <button type="submit" className="add-lecturer-button">

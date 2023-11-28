@@ -158,22 +158,22 @@ console.log(sampleModules)
                 <th colSpan="5" className='selectedModule'>{selectedModule.moduleName}</th>
               </tr>
               <tr>
+                <th>Day</th>
                 <th>Program</th>
                 <th>Semester</th>
                 <th>Time</th>
                 <th>Room</th>
-                <th>Hours</th>
               </tr>
             </thead>
             <tbody>
-              {selectedModule.details.classes.map((classDetail, index) => (
-                         <tr key={index}>
-                         <td>{classDetail|| 'DefaultClassName'}</td>
-                         <td>{selectedModule.details.semester|| 'DefaultDay'}</td>
-                         <td>{classDetail.time || 'DefaultTimee'}</td>
-                         <td>{classDetail.room || 'DefaultRoom'}</td>
-                         <td>{classDetail.hours || 'DefaultHours'}</td>
-                       </tr>
+            {selectedModule.details.classDetails.map((classDetail, index) => (
+                <tr key={index}>
+                  <td>{classDetail.day || 'DefaultRoom'}</td>
+                  <td>{classDetail.class || 'DefaultClassName'}</td>
+                  <td>{selectedModule.details.semester || 'DefaultDay'}</td>
+                  <td>{classDetail.time || 'DefaultTime'}</td>
+                  <td>{classDetail.room || 'DefaultRoom'}</td>
+                </tr>
               ))}
             </tbody>
           </table>
