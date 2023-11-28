@@ -115,14 +115,16 @@ function CreateLecturer({ onSave, onCancelCreate, handleCategoryClick, addNewLec
           classes: moduleDetails.classes,
           // Allocate different time and attach hours for each class
           classDetails: moduleDetails.classes.map((classValue, index) => {
-            const startTime = "09:00"; // Start time (9 AM)
-            const endTime = calculateEndTime(startTime, index + 1); // End time
-
+            // Always start the second class at 9 AM
+            const startTime = index === 0 ? "09:00" : calculateEndTime("09:00", index - 1);
+            const endTime = calculateEndTime(startTime, 1); // End time
+  
             return {
               class: classValue,
               room: `Room ${Math.floor(Math.random() * 9) + 1}`,
               time: `${startTime} - ${endTime}`,
-              day: daysOfWeek[index % daysOfWeek.length], // Distribute classes over days of the week
+              day: daysOfWeek[index % daysOfWeek.length],
+              creditHour: 3, // Distribute classes over days of the week
             };
           }),
         },
